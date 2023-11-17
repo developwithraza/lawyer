@@ -9,10 +9,11 @@ import { MdEdit } from "react-icons/md";
 
 function AllLawyerList() {
     const [lowList, setLawList] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const LowyerList = async () => {
         await AllLowyers().then(res => {
+            setIsLoading(true)
             console.log('lowyer list', res.data);
             if (res.status == 200) {
                 setLawList(res.data.data)
