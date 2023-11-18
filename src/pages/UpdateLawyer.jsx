@@ -7,7 +7,7 @@ import { MdMyLocation } from "react-icons/md";
 import { DatePicker } from 'antd';
 import { CourtCategory, CreateLawyer, ExpList, languageList } from '../service/api_services';
 
-function AddLawyer() {
+function UpdateLawyer() {
 
     const [form] = Form.useForm();
     const [upAdhar,setUpAdhar]=useState("")
@@ -634,4 +634,4 @@ function AddLawyer() {
 
 
 
-export default AddLawyer
+export default UpdateLawyer

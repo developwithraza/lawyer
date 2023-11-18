@@ -7,6 +7,7 @@ import './page.css'
 import { MdDeleteOutline } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import axios from 'axios';
+import UpdateLawyerModel from './UpdateLawyerModel';
 
 function AllLawyerList() {
     const [lowList, setLawList] = useState([])
@@ -91,7 +92,8 @@ function AllLawyerList() {
                                 </div>
                                 <div className="data_act_item">
                                     <MdDeleteOutline className='data_act_icon' onClick={(id) => handleDelete(item._id)} />
-                                    < MdEdit className='data_act_icon' onClick={handleUpdate} />
+                                    {/* < MdEdit className='data_act_icon' onClick={handleUpdate} /> */}
+                                    <UpdateLawyerModel />
                                 </div>
                             </div>
                         )
