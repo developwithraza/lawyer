@@ -22,10 +22,11 @@
     border-radius: 25px !important;
 }
 
-.sec_action button {
-    background-color: #141E46;
+.modalBtn button{
+    background-color: #141E46 !important;
     border-style: none;
     border-radius: 25px;
+    color: white !important;
 }
 
 .section_content {

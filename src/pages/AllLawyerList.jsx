@@ -1,15 +1,18 @@
 import React from 'react'
-import { AllLowyers } from '../service/api_services';
+import { AllLowyers, token } from '../service/api_services';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Spin } from 'antd';
+import { Spin, message } from 'antd';
 import './page.css'
 import { MdDeleteOutline } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
+import axios from 'axios';
 
 function AllLawyerList() {
     const [lowList, setLawList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    // const [count,setCout]=useState()
+
 
     const LowyerList = async () => {
         await AllLowyers().then(res => {
@@ -17,6 +20,7 @@ function AllLawyerList() {
             console.log('lowyer list', res.data);
             if (res.status == 200) {
                 setLawList(res.data.data)
+                // setCout(res.data.data.length)
                 setIsLoading(false)
             }
         }).catch(err => {
@@ -27,10 +31,18 @@ function AllLawyerList() {
         LowyerList()
     }, [])
 
-    const handleDelete=()=>{
-        alert("no action perform, time too much sonsume")
+    const handleDelete = async (id) => {
+        await axios.delete(`https://shlok-mittal-lawyer-backend.vercel.app/api/v1/admin/user/${id}`, { headers: { "Authorization": `Bearer ${token}` } }).then(res => {
+            console.log(res)
+            message.success(res.data.msg);
+            LowyerList()
+        }).catch(err => {
+            console.log(err.data.msg);
+
+        })
+
     }
-    const handleUpdate=()=>{
+    const handleUpdate = () => {
         alert("no action perform, time too much sonsume")
     }
 
@@ -43,7 +55,7 @@ function AllLawyerList() {
                             <p style={{ visibility: "hidden" }}>status</p>
                         </div>
                         <div className="header_item">
-                            <p>Lawyer Name</p>
+                            <p>Lawyer Name </p>
                         </div>
                         <div className="header_item">
                             <p>Email</p>
@@ -78,8 +90,8 @@ function AllLawyerList() {
                                     <p>{item.consultancyCost}</p>
                                 </div>
                                 <div className="data_act_item">
-                                    <MdDeleteOutline className='data_act_icon' onClick={handleDelete}/>
-                                    < MdEdit className='data_act_icon' onClick={handleUpdate}/>
+                                    <MdDeleteOutline className='data_act_icon' onClick={(id) => handleDelete(item._id)} />
+                                    < MdEdit className='data_act_icon' onClick={handleUpdate} />
                                 </div>
                             </div>
                         )

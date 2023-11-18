@@ -3,6 +3,7 @@ import React from 'react'
 import { FiSearch } from 'react-icons/fi'
 import './page.css'
 import AllLawyerList from './AllLawyerList'
+import AddLawyerModel from './AddLawyerModel'
 
 function AllLawyer() {
   return (
@@ -29,7 +30,7 @@ function AllLawyer() {
               }}
             />
           </Form.Item>
-          <Button type='primary'>Add New Lowyer</Button>
+          <AddLawyerModel />
         </div>
       </div>
       <div className="section_content">

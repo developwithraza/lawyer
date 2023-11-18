@@ -27,10 +27,11 @@ function LoginPage() {
       if (res.status == 201) {
         sessionStorage.setItem("userInfo", JSON.stringify(res.data))
         setIsLoading(false)
+        message.success(res.data.meg)
         navigate('/dashboard/all_lawyer')
       }
     }).catch(err => {
-      message.error(err.message);
+      message.error(err.msg);
 
     })
   }
